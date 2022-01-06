@@ -1,0 +1,13 @@
+[package]
+name = "Dota2Items"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+simple_excel_writer = "0.1.9"
+reqwest = { version = "0.11", features = ["blocking", "json"] }
+scraper = "0.12.0"
+serde = { version = "1.0.104", features = ["derive"] }
+serde_json = "1.0.48"
