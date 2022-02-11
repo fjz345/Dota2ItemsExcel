@@ -3,6 +3,7 @@ use excel::*;
 use scraper::{Html, Selector};
 
 use serde_json::{Map, Value};
+use std::process::Command;
 
 #[derive(Debug)]
 struct ItemEntry
@@ -80,7 +81,7 @@ fn main() {
     // Replace item_names with real names
     GetRealItemNames(&mut Items);
 
-    let mut wb = Workbook::create("C:/Users/Filip/Desktop/Dota2Data.xlsx");
+    let mut wb = Workbook::create("../Dota2Data.xlsx");
     WriteItemsToXlsx(&mut wb, &Items);
 
 
@@ -96,6 +97,20 @@ fn main() {
 
     // Close
     wb.close().expect("close excel error!");
+
+    // Open the file
+    let output = if cfg!(target_os = "windows") {
+        Command::new("cmd")
+                .args(["/C", "start ../Dota2BuyDps.xlsm"])
+                .output()
+                .expect("failed to execute process")
+    } else {
+        Command::new("sh")
+                .arg("-c")
+                .arg("../Dota2BuyDps.xlsm")
+                .output()
+                .expect("failed to execute process")
+    };
 }
 
 fn GetItemDataJsonString() -> String
