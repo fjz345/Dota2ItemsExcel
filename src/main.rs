@@ -81,7 +81,7 @@ fn main() {
     // Replace item_names with real names
     GetRealItemNames(&mut Items);
 
-    let mut wb = Workbook::create("../Dota2Data.xlsx");
+    let mut wb = Workbook::create("Dota2Data.xlsx");
     WriteItemsToXlsx(&mut wb, &Items);
 
 
@@ -101,13 +101,13 @@ fn main() {
     // Open the file
     let output = if cfg!(target_os = "windows") {
         Command::new("cmd")
-                .args(["/C", "start ../Dota2BuyDps.xlsm"])
+                .args(["/C", "start Dota2BuyDps.xlsm"])
                 .output()
                 .expect("failed to execute process")
     } else {
         Command::new("sh")
                 .arg("-c")
-                .arg("../Dota2BuyDps.xlsm")
+                .arg("Dota2BuyDps.xlsm")
                 .output()
                 .expect("failed to execute process")
     };
