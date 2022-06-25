@@ -94,22 +94,38 @@ fn main() {
     GetHeroesData(&HeroDataJson, &mut HeroList);
 
     WriteHeroesToXlsx(&mut wb, &HeroList);
-
     // Close
     wb.close().expect("close excel error!");
 
+    OpenExcel();
+    
+}
+
+fn OpenExcel()
+{
     // Open the file
     let output = if cfg!(target_os = "windows") {
         Command::new("cmd")
+                .args(["/C", "start Dota2Data.xlsx"])
+                .output()
+                .expect("failed to execute process");
+
+                Command::new("cmd")
                 .args(["/C", "start Dota2BuyDps.xlsm"])
                 .output()
-                .expect("failed to execute process")
+                .expect("failed to execute process");
     } else {
         Command::new("sh")
                 .arg("-c")
+                .arg("Dota2Data.xlsx")
+                .output()
+                .expect("failed to execute process");
+
+                Command::new("sh")
+                .arg("-c")
                 .arg("Dota2BuyDps.xlsm")
                 .output()
-                .expect("failed to execute process")
+                .expect("failed to execute process");
     };
 }
 
