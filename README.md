@@ -1,7 +1,14 @@
 # Dota2ItemsExcel
 
+![alt text](img/showcase.png)
+
+![alt text](img/showcase.png)
+
 This is my first rust project and I am pleased with the status it is in. I will not keep this up to date and probably will not rewrite the ugly code for a while.
 
+# Note this is not up to date
+
+# What does it do
 Fetches dota 2 items/heroes and creates a spreadsheet with data.
 Also includes a interactive DPS spreadsheet.
 
